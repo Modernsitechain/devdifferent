@@ -1,7 +1,4 @@
 export * from './date-converter.function'
-export * from './placement-converter'
-export * from './tags-converter.function'
-export * from './locale-converter.function'
 export * from './file-size-converter.function'
 export * from './time-period.function'
 export * from './file-name-generator.function'
