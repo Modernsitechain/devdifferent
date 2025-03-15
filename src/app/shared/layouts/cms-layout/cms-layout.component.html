@@ -1,11 +1,9 @@
 <app-layout-header />
-<main>
-  <nav class="panel-wrap">
-    <aside class="panel-contain">
-      <app-layout-sidebar />
-    </aside>
-  </nav>
-  <section>
+<main class="layout__main">
+  <section class="layout__sidebar">
+    <app-layout-sidebar />
+  </section>
+  <section class="layout__content">
     <router-outlet></router-outlet>
   </section>
 </main>

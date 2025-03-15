@@ -1,46 +1,27 @@
 @use "includes" as i;
 @use "themes" as t;
 
-.cms-layout-wrapper {
-  width: 100vw;
-  height: 100vh;
-  @include i.flex-row();
-  overflow-x: hidden;
-  background-color: var(--color-second-background);
-
-  .sidebar {
-    width: 20%;
-    max-width: 21.5rem;
+.layout{
+  &__main{
+    @include i.flex-row(stretch);
+    width: 100%;
     height: 100%;
-    background-color: transparent;
+    overflow: hidden;
   }
 
-  main {
-    flex: 1;
-    height: 100%;
-    margin-right: 2rem;
-  }
-}
-
-main {
-  @include i.flex-row(stretch);
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  .panel-wrap{
-    background-color: var(--color-second-background);
+  &__sidebar{
+    background-color: #f2f6f8;
     width: 20%;
     min-width: 21.3rem;
     height: 100%;
     position: inital;
     top: initial;
-    .panel-contain{
-      padding: 1.5rem;
-    }
+    padding: 1rem 1.5rem;
+
   }
 
-  section{
-    background-color: var(--color-sidebar-background);
+  &__content{
+    background-color: #f8f9fa;
     width: 100%;
     height: 100%;
     overflow: scroll;

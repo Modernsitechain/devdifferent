@@ -7,7 +7,7 @@ import { IconComponent, IconName } from '@shared/components/icon/icon.component'
 
 interface MenuInterface {
   icon: IconName;
-  text: string;
+  label: string;
   url: string;
 }
 
@@ -22,30 +22,10 @@ interface MenuInterface {
 export class LayoutSidebarComponent {
   public menus: MenuInterface[] = [
     {
-      icon: 'saxMessageAddOutline',
-      text: 'menu-boost.positive-message',
-      url: '/content-management/positive-messages',
-    },
-    {
-      icon: 'saxVideoVerticalOutline',
-      text: 'menu-boost.hack',
-      url: '/content-management/hacks',
-    },
-    {
-      icon: 'saxVideoTickOutline',
-      text: 'menu-boost.insight',
-      url: '/content-management/insights',
-    },
-    {
-      icon: 'saxBookOutline',
-      text: 'menu-boost.challenge',
-      url: '/content-management/challenges',
-    },
-    {
-      icon: 'saxAwardOutline',
-      text: 'menu-boost.milestone',
-      url: '/content-management/milestones',
-    },
+      icon: 'saxImageOutline',
+      label: 'menu.content',
+      url: '/cms/content',
+    }
   ];
 
   constructor(public route: Router) {}
