@@ -42,11 +42,6 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
-            },
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
             }
           },
           "configurations": {
