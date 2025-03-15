@@ -1,1 +1,40 @@
-<p>layout-sidebar works!</p>
+<aside class="sidebar">
+  <ul class="sidebar__container">
+    @for (menu of menus; track $index) {
+    <li>
+      <button
+        class="menu-wrap"
+        appButton
+        [stretch]="true"
+        [class.active]="isActive(menu.url)"
+      >
+        <div class="menu-icon">
+          <app-icon [name]="menu.icon"></app-icon>
+        </div>
+
+        <div class="menu-title">
+          <p class="menu-title-text">{{ menu.text | translate }}</p>
+        </div>
+      </button>
+    </li>
+    }
+  </ul>
+  @for (menu of menus; track menu.text) {
+  <a [href]="menu.url">
+    <button
+      class="menu-wrap"
+      appButton
+      [stretch]="true"
+      [class.active]="isActive(menu.url)"
+    >
+      <div class="menu-icon">
+        <app-icon [name]="menu.icon"></app-icon>
+      </div>
+
+      <div class="menu-title">
+        <p class="menu-title-text">{{ menu.text | translate }}</p>
+      </div>
+    </button>
+  </a>
+  }
+</aside>
