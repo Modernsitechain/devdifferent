@@ -1,0 +1,32 @@
+<app-dialog [disableClose]="true">
+  <div class="media-view-dialog-wrap">
+    <div
+      class="media-view-dialog-content"
+      [ngClass]="{
+        'media-view-dialog-content--audio': data.mediaType === 'audio'
+      }">
+      @if (data.mediaType === 'image') {
+      <img [src]="data.media" alt="image" />
+      }@else if (data.mediaType === "video") {
+      <video controls autoplay>
+        <source [src]="data.media" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      } @else {
+      <audio controls autoplay>
+        <source [src]="data.media" />
+        Your browser does not support the video tag.
+      </audio>
+      }
+    </div>
+  </div>
+  <div class="button-wrap">
+    <button
+      appButton="secondary"
+      class="outline"
+      [stretch]="true"
+      (click)="close()">
+      <app-label>{{ 'button.close' | translate }}</app-label>
+    </button>
+  </div>
+</app-dialog>

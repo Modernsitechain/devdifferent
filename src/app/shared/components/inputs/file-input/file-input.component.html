@@ -1,0 +1,133 @@
+<div
+  class="upload-area"
+  [class.dragging]="dragging()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave()"
+  (drop)="onDrop($event)">
+  @if (!currentData()) { @if (!file() && !loading()) {
+  <div class="upload-wrap">
+    <div class="upload-icon">
+      <ng-icon name="saxDocumentUploadOutline" />
+    </div>
+    <div class="upload-text">
+      <p>
+        {{ 'text.drag-and-drop' | translate }}
+        <span (click)="onFileSelect()">{{
+          'text.upload-file' | translate
+        }}</span>
+      </p>
+      <span>{{ accessableFileTypeText() }}</span>
+    </div>
+  </div>
+  }@else if (file() && loading()) {
+  <div class="uploaded-file-wrap">
+    <div class="uploaded-file-info">
+      <div class="info-image-wrap">
+        @if( imageSrc() ){
+        <img [src]="imageSrc()" alt="logo" />
+        }
+        <ng-icon
+          [name]="
+            fileType() === 'image'
+              ? 'saxGalleryOutline'
+              : 'saxVideoCircleOutline'
+          "></ng-icon>
+      </div>
+      <p class="info-file-title">{{ file()?.name }}</p>
+    </div>
+    <div class="progress-wrap">
+      <div class="uploaded-file-progress">
+        <div class="progress-bar" [style.width.%]="progress()"></div>
+      </div>
+      <div>
+        <ng-icon name="saxCloseCircleOutline" />
+      </div>
+    </div>
+    <div class="file-info-wrap">
+      <span>{{ getFileSize(file()?.size) }}</span>
+      <span>{{ progress() }}%</span>
+    </div>
+  </div>
+  }@else{
+  <div class="preview-file-wrap">
+    <div class="uploaded-file-info">
+      <div class="info-image-wrap">
+        @if( imageSrc() ){
+        <img [src]="imageSrc()" alt="logo" />
+        }
+        <ng-icon
+          [name]="
+            fileType() === 'image'
+              ? 'saxGalleryOutline'
+              : 'saxVideoCircleOutline'
+          "></ng-icon>
+      </div>
+      <p class="info-file-title">{{ file()?.name }}</p>
+    </div>
+    <div class="preview-action-wrap">
+      <div
+        class="action-view"
+        (click)="
+          openMediaViewDetail({
+            media: fileType() === 'image' ? imageSrc() : videoPreview(),
+            mediaType: fileType()
+          })
+        ">
+        <span>{{ 'text.view' | translate }}</span>
+      </div>
+      <div (click)="removeFile()" class="action-delete">
+        <ng-icon name="saxTrashOutline" />
+      </div>
+    </div>
+  </div>
+  } }@else {
+  <div class="preview-file-wrap">
+    <div class="uploaded-file-info">
+      <div class="info-image-wrap">
+        @if (fileType() === 'image') {
+        <app-image
+          [path]="this.currentData()?.url || ''"
+          [title]="this.currentData()?.title || ''" />
+        }@else {
+        <img src="assets/images/logos/logo.png" alt="logo" />
+        }
+        <ng-icon
+          [name]="
+            fileType() === 'image'
+              ? 'saxGalleryOutline'
+              : 'saxVideoCircleOutline'
+          "></ng-icon>
+      </div>
+      <p class="info-file-title">{{ currentData().title }}</p>
+    </div>
+    <div class="preview-action-wrap">
+      <!-- @if(!mediaPerform.isLoading && mediaPerform.data){
+      <div
+        class="action-view"
+        (click)="
+          openMediaViewDetail({
+            media: mediaPerform.data,
+            mediaType: fileType()
+          })
+        ">
+        <span>{{ 'text.view' | translate }}</span>
+      </div>
+      } -->
+      <div (click)="removeFile()" class="action-delete">
+        <ng-icon name="saxTrashOutline" />
+      </div>
+    </div>
+  </div>
+  }
+
+  <input
+    type="file"
+    #fileInput
+    [accept]="accessableFileType()"
+    (change)="onFileChange($event)"
+    hidden />
+</div>
+
+<app-input-error-message
+  [showMessage]="error()"
+  [message]="'error-message.file-not-supported' | translate" />

@@ -1,0 +1,27 @@
+<div class="input-wrapper" [class.has-icon]="icon !== undefined">
+  <ng-content select="[prefix]"></ng-content>
+  <input
+    #inputElement
+    class="input"
+    [class.split-left]="split === 'left'"
+    [class.split-right]="split === 'right'"
+    [type]="inputType"
+    [placeholder]="placeholder ? placeholder : ' '"
+    [formControl]="control"
+    [autocomplete]="autocomplete"
+    [class.danger]="danger"
+    [ngClass]="size === 'md' ? 'md' : 'sm'"
+    [min]="min"
+    [max]="max"
+    (paste)="onPaste()"
+    [style.padding-right.rem]="paddingRight"
+    (keydown.enter)="preventEnter ? $event.preventDefault() : null"
+  />
+
+  <ng-content select="[suffix]"></ng-content>
+</div>
+
+<app-input-error-message
+  [showMessage]="control.getError('required') && control.touched"
+  [message]="'error-message.required' | translate"
+/>

@@ -1,0 +1,86 @@
+@use 'themes' as t;
+@use 'includes' as i;
+
+.container {
+  max-width: 25rem;
+  min-width: 15rem;
+  text-align: center;
+  @include i.flex-column(center, flex-start);
+
+  .icon-container{
+    display: inline-block;
+    color: t.get-color('primary', 500);
+    font-size: 3rem;
+
+    &.animate{
+      animation-duration: 3s;
+      animation-name: rotate;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-delay: 500ms;
+    }
+
+    &.error{
+      color: t.get-color('red', 800);
+    }
+  }
+
+  h4 {
+    font-weight: bold;
+    color: var(--color-primary-neutral-700);
+    margin-top: 0.5rem;
+  }
+
+  .description {
+    color: var(--color-primary-neutral-500);
+    margin-top: 0.5rem;
+
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+
+    app-progress-bar {
+      margin-top: 1rem;
+      background-color: lighten(t.get-color('primary', 900), 50%);
+    }
+
+    p {
+      margin-top: 1rem;
+    }
+  }
+
+  .error-container {
+    @include i.flex(center, center);
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: t.get-color('red', 800);
+    margin-top: 0.5rem;
+
+    p {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .success-container {
+    @include i.flex(center, center);
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: t.get-color('green', 500);
+    margin-top: 0.5rem;
+
+    p {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
