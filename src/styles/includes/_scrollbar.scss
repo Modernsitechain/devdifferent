@@ -1,0 +1,23 @@
+@use '../themes/colors';
+
+@mixin scrollbar(
+  $thumb-color: colors.get-color('primary', 500),
+  $background-color: colors.get-color('moovd-sky-blue', 300)
+) {
+  // Define the track styles
+  &::-webkit-scrollbar-track {
+    background-color: $background-color;
+    border-radius: 0.875rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  // Define the thumb styles
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: 0.875rem;
+  }
+}

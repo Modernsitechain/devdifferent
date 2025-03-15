@@ -1,0 +1,11 @@
+@use './shadow' as sh;
+@use '../themes' as t;
+@use './border' as b;
+
+@mixin session-card {
+  display: block;
+  border-radius: b.border-radius('lg');
+  background-color: t.$white;
+  padding: 1.25rem;
+  @include sh.shadow();
+}
