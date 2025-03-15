@@ -1,0 +1,114 @@
+@use './border' as b;
+@use '../themes/' as t;
+
+$input-height: 3.125rem;
+$input-height-sm: 2rem;
+$input-padding: 0.5rem 1.25rem;
+
+@mixin input-base {
+  width: 100%;
+  min-height: $input-height;
+  padding: $input-padding;
+  background-color: transparent;
+  border-radius: b.border-radius('md');
+  outline: none;
+  transition: box-shadow 150ms;
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &.sm {
+    min-height: $input-height-sm;
+    padding: 0 0.5rem;
+    font-size: t.font-size('xs');
+
+    &.placeholder,
+    &::placeholder {
+      font-size: t.font-size('xs');
+    }
+  }
+
+  &.has-icon {
+    padding-left: 2rem;
+  }
+}
+
+@mixin input-solid {
+  border: 1px solid t.get-color('moovd-blue', 300);
+  color: t.$black;
+
+  &:focus,
+  &.focus {
+    // border-color: t.$primary;
+    border-color: var(--color-neutral-gray-900);
+    // box-shadow:
+    //   0 0 0 0.25rem rgba(t.$primary, 0.2),
+    //   0 4px 4px rgba(t.$primary, 0.2);
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: #3e4e5f14;
+  }
+
+  &.danger {
+    border-color: t.get-color('red', 800);
+    color: t.get-color('red', 600);
+
+    &.placeholder,
+    &::placeholder {
+      color: t.get-color('red', 600);
+    }
+  }
+
+  &.success {
+    border-color: t.get-color('green', 800);
+  }
+
+  &.placeholder,
+  &::placeholder {
+    font-size: t.font-size('sm');
+    color: t.get-color('gray', 900);
+  }
+}
+
+@mixin input-no-outline {
+  border: 0px;
+  color: t.$black;
+
+  &:focus,
+  &.focus {
+    // border-color: t.$primary;
+    border-color: var(--color-neutral-gray-900);
+    // box-shadow:
+    //   0 0 0 0.25rem rgba(t.$primary, 0.2),
+    //   0 4px 4px rgba(t.$primary, 0.2);
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: #3e4e5f14;
+  }
+
+  &.danger {
+    border-color: t.get-color('red', 800);
+    color: t.get-color('red', 600);
+
+    &.placeholder,
+    &::placeholder {
+      color: t.get-color('red', 600);
+    }
+  }
+
+  &.success {
+    border-color: t.get-color('green', 800);
+  }
+
+  &.placeholder,
+  &::placeholder {
+    font-size: t.font-size('sm');
+    color: t.get-color('gray', 900);
+  }
+}

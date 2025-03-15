@@ -1,1 +1,101 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/app/reset.scss';
+@use './styles/app/vendor.scss';
+
+@use './styles/app/base.scss';
+@use './styles/app/typography.scss';
+@use './styles/app/common.scss';
+@use './styles/utilities';
+@use './app/shared/shared.styles.scss';
+
+@use './styles/themes' as t;
+
+// CSS Tokens
+:root {
+  /* Figma Color*/
+  --color-sidebar-background: #f8f9fa;
+  --color-second-background: #f2f6f8;
+
+  --color-primary-neutral-50: #e9f1fb;
+  --color-primary-neutral-100: #cddce8;
+  --color-primary-neutral-200: #b2c4d4;
+  --color-primary-neutral-300: #95acc0;
+  --color-primary-neutral-400: #68879f;
+  --color-primary-neutral-500: #607e95;
+  --color-primary-neutral-600: #5b778d;
+  --color-primary-neutral-700: #4b6376;
+  --color-primary-neutral-800: #3c5060;
+  --color-primary-neutral-900: #2a3a48;
+
+  --color-primary-green-50: #def1f3;
+  --color-primary-green-100: #addce0;
+  --color-primary-green-200: #75c7cb;
+  --color-primary-green-300: #34b0b5;
+  --color-primary-green-400: #01a0a3;
+  --color-primary-green-500: #008f90;
+  --color-primary-green-600: #008283;
+  --color-primary-green-700: #007372;
+  --color-primary-green-800: #006361;
+  --color-primary-green-900: #004743;
+
+  --color-neutral-gray-0: #ffffff;
+  --color-neutral-gray-50: #fafcfd;
+  --color-neutral-gray-100: #f4f8fa;
+  --color-neutral-gray-200: #eff4f7;
+  --color-neutral-gray-300: #eaf1f5;
+  --color-neutral-gray-400: #dce5ea;
+  --color-neutral-gray-500: #dbe3e8;
+  --color-neutral-gray-600: #c9d2d8;
+  --color-neutral-gray-700: #bbc4cb;
+  --color-neutral-gray-800: #99a4a8;
+  --color-neutral-gray-900: #829198;
+
+  --color-green-50: #f3f8f5;
+  --color-green-200: #e2ece7;
+  --color-green-400: #c5dad0;
+  --color-green-600: #8cb5a1;
+  --color-green-800: #70aa8e;
+
+  --color-magenta-50: #faf4f7;
+  --color-magenta-800: #bd7a9c;
+
+  --color-blue-50: #f1f5fa;
+  --color-blue-800: #759ccb;
+
+  --color-orange-50: #fef6f0;
+  --color-orange-200: #fde8da;
+  --color-orange-400: #fad0b6;
+  --color-orange-600: #f7b992;
+  --color-orange-800: #f5a26e;
+
+  /* Typography */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  --font-color-dark: #{t.get-color('moovd-blue', 900)};
+  --font-color-gray: #{t.get-color('gray', 800)};
+  --font-color-lightgray: #{t.get-color('gray', 500)};
+  --font-color-light: #{t.get-color('moovd-blue', 50)};
+  --font-color-primary: #{t.get-color('primary', 500)};
+
+  /* Background Color */
+  --background-color-light: #{t.get-color('gray', 50)};
+  --background-color-dark: ;
+
+  /* Card Color */
+  --card-color: white;
+
+  /* Shadow Color */
+  --shadow-color: #{t.get-color('gray', 200)};
+
+  /* Badge Color */
+  --badge-color-primary: #{t.get-color('moovd-light-blue', 400)};
+  --badge-color-secondary: #{t.get-color('gray', 100)};
+  --badge-color-light: white;
+
+  // Button Color
+  --button-color-primary: ;
+  --button-color-secondary: ;
+}

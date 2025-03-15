@@ -1,0 +1,96 @@
+$colors: (
+  'primary': (
+    500: #01a0a3,
+    900: #386f73
+  ),
+  'gray': (
+    50: #f8f8f8,
+    100: #e4e4e4,
+    200: #e5e5e5,
+    500: #c3c3c3,
+    800: #787878,
+    900: #6d7278
+  ),
+  'moovd-sky-blue': (
+    050: #fafcfd,
+    100: #f4f8fa,
+    200: #eff4f7,
+    300: #eaf1f5,
+    400: #dce5ea,
+    500: #dbe3e8,
+    600: #c9d2d8,
+    700: #bbc4cb,
+    800: #99a4a8,
+    900: #829198
+  ),
+  'moovd-blue': (
+    050: #e9f1fb,
+    100: #cddce8,
+    200: #b2c4d4,
+    300: #95acc0,
+    400: #7e99af,
+    500: #68879f,
+    600: #5b778d,
+    700: #4b6376,
+    800: #3c5060,
+    900: #2a3a48
+  ),
+  'moovd-light-blue': (
+    050: #def1f3,
+    100: #addce0,
+    200: #75c6cb,
+    300: #34b0b5,
+    400: #00a0a3,
+    500: #008f90,
+    600: #008283,
+    700: #007372,
+    800: #006361,
+    900: #004743
+  ),
+  'red': (
+    050: #fbefed,
+    200: #f5cecb,
+    400: #e8afa9,
+    600: #dd887f,
+    800: #d32b1b
+  ),
+  'green': (
+    050: #f3f8f5,
+    200: #e2ece7,
+    400: #c5dad0,
+    500: #21ba45,
+    600: #8cb5a1,
+    800: #70aa8e
+  ),
+  'success': (
+    500: #8cb5a1
+  ),
+  'silver': (
+    500: #dee3e6
+  ),
+  'magenta': (
+    500: #e03997
+  ),
+  'blue': (
+    500: #2b9ff7
+  ),
+  'yellow': (
+    500: #fbd608,
+    600: #fed67f,
+    800: #fec855
+  ),
+  'orange': (
+    500: #f5a26e,
+    600: #f7b992
+  )
+);
+
+$white: #ffffff;
+$black: #2a3a48;
+$primary: #01a0a3;
+$darkmode-black: #141a21;
+
+@function get-color($color, $shade: 500) {
+  $config: map-get($colors, $color);
+  @return map-get($config, $shade);
+}
