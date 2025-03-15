@@ -1,0 +1,99 @@
+@use 'includes' as i;
+@use 'themes' as t;
+
+$navbar-height-desktop: fit-content;
+$navbar-height-mobile: 4.875rem;
+$brand-height-desktop: 1.5rem;
+$brand-height-mobile: 1rem;
+
+$text-color: #373131;
+
+:host {
+  @include i.flex-row(center, space-between);
+  padding: 1rem;
+  background-color: var(--color-neutral-gray-0);
+  z-index: 5;
+  height: $navbar-height-mobile;
+
+  &.shadow {
+    box-shadow: 0px 4px 16px rgba(t.get-color('moovd-blue', 900), 0.12);
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.by-moovd {
+  font-size: t.font-size('xs');
+}
+
+.color-primary {
+  color: t.$primary;
+}
+
+.title {
+  @include i.flex-column();
+  gap: 0.25rem;
+  .date-time {
+    color: t.get-color('gray', 500);
+    font-size: t.font-size('xs');
+    line-height: 1;
+  }
+}
+
+.left,
+.right {
+  z-index: 10;
+}
+
+.logo {
+  height: $brand-height-mobile;
+}
+
+.left,
+.right {
+  @include i.flex-row();
+  gap: 0.5rem;
+}
+
+.right {
+  gap: 1rem;
+}
+
+.vr {
+  width: 1px;
+  height: 2rem;
+  background-color: t.get-color('gray', 200);
+}
+
+@include i.breakpoint-up(i.$default-breakpoint-up) {
+  :host {
+    height: $navbar-height-desktop;
+    padding: 0.825rem 1.5rem;
+  }
+
+  .logo {
+    height: $brand-height-desktop;
+  }
+
+  .left {
+    gap: 1.875rem;
+  }
+
+  h6 {
+    font-size: t.font-size('lg');
+  }
+
+  .vr {
+    height: 3.125rem;
+  }
+
+  .by-moovd {
+    font-size: t.font-size('md');
+  }
+}

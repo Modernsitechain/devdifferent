@@ -1,0 +1,18 @@
+@for (menu of menus; track menu.text) {
+<a [href]="menu.url">
+  <button
+    class="menu-wrap"
+    appButton
+    [stretch]="true"
+    [class.active]="isActive(menu.url)"
+  >
+    <div class="menu-icon">
+      <ng-icon [name]="menu.icon"></ng-icon>
+    </div>
+
+    <div class="menu-title">
+      <p class="menu-title-text">{{ menu.text | translate }}</p>
+    </div>
+  </button>
+</a>
+}

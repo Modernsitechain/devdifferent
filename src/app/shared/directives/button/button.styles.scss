@@ -1,0 +1,188 @@
+@use 'includes' as i;
+@use 'themes' as t;
+
+$button-disabled-opacity: 0.4;
+$button-padding-x: 1rem;
+$border-radius: 0.625rem;
+
+$button-sizes: (
+  'sm': 2rem,
+  // md: Default size
+  'md': 2.875rem,
+  'lg': 3.75rem
+);
+
+@function button-size($size) {
+  @return map-get($button-sizes, $size);
+}
+
+@mixin solid-button($color, $shade: 500) {
+  $bg: t.get-color($color, $shade);
+  color: t.$white;
+  background-color: $bg;
+
+  &:hover {
+    background-color: darken($bg, 5%);
+  }
+}
+
+@mixin transparent-button() {
+  color: var(--color-primary-green-500);
+  background-color: transparent;
+}
+
+@mixin outline-button($color, $shade: 500) {
+  $color: t.get-color($color, $shade);
+  color: $color;
+  background-color: t.$white;
+  border: 1px solid $color;
+
+  &:hover {
+    background-color: darken(t.$white, 5%);
+  }
+}
+
+.button {
+  @include i.flex(center, center, true);
+  @include i.text-md();
+  cursor: pointer;
+  color: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 0 $button-padding-x;
+  background-color: transparent;
+  height: button-size('md');
+  border-radius: i.border-radius('lg');
+  transition: background-color 125ms;
+
+  &.square {
+    width: button-size('md');
+    padding: 0;
+  }
+
+  &.rounded {
+    border-radius: 20rem;
+  }
+
+  &.round {
+    border-radius: 100%;
+  }
+
+  &.disabled,
+  &:disabled {
+    cursor: not-allowed;
+    opacity: $button-disabled-opacity;
+  }
+
+  &.loading {
+    cursor: wait;
+    opacity: button-disabled-opacity;
+  }
+
+  &.stretch {
+    width: 100%;
+    flex: 1;
+  }
+
+  &.shrink {
+    flex-shrink: 1;
+    width: auto;
+  }
+
+  &.default {
+    color: t.$black;
+    background-color: t.$white;
+
+    &.shadow {
+      @include i.shadow();
+    }
+
+    &:hover {
+      background-color: darken(t.$white, 5%);
+    }
+
+    &.outline {
+      border: 1px solid t.$black;
+      &:hover {
+        background-color: darken(t.$white, 5%);
+      }
+    }
+  }
+
+  &.primary {
+    @include solid-button('primary', 500);
+
+    &.outline {
+      @include outline-button('primary', 500);
+    }
+  }
+
+  &.white {
+    @include solid-button('moovd-light-blue', 50);
+    color: var(--color-primary-neutral-900);
+    background-color: white;
+    border: 1px solid var(--color-primary-green-50);
+  }
+
+  &.secondary {
+    @include transparent-button();
+
+    &.outline {
+      @include outline-button('primary', 500);
+    }
+  }
+
+  &.moovd-light-blue-50 {
+    @include solid-button('moovd-light-blue', 50);
+    color: t.$primary;
+    &.outline {
+      @include solid-button('moovd-light-blue', 50);
+      color: t.$primary;
+    }
+  }
+
+  &.red {
+    @include solid-button('red', 800);
+
+    &.outline {
+      @include outline-button('red', 800);
+    }
+  }
+
+  &.danger {
+    color: #d32b1b;
+    background-color: #fbefed;
+    
+    &:hover {
+      background-color: darken(#fbefed, 5%);
+    }
+
+    &.inactive {
+      color: #829198 !important;
+      background-color: #f4f8fa !important;
+      cursor: not-allowed;
+    }
+  }
+
+  &.sm {
+    height: button-size('sm');
+    @include i.text-sm();
+
+    &.square {
+      width: button-size('sm');
+    }
+  }
+
+  &.lg {
+    padding: 0 1.125rem;
+    height: button-size('lg');
+
+    &.square {
+      width: button-size('lg');
+    }
+  }
+
+  &.sharp-corners {
+    border-radius: 0;
+  }
+}

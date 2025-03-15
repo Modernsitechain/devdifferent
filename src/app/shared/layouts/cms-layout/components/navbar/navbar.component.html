@@ -1,0 +1,18 @@
+<div class="left">
+  <div
+    class="banner cursor"
+    (click)="goHome()"
+    (keyup.enter)="goHome()"
+    tabindex="0"
+  >
+    <img
+      src="assets/images/logos/wemind-blue.svg"
+      class="logo"
+      alt="EMDR logo"
+    />
+  </div>
+  <ng-content select="[left]"></ng-content>
+</div>
+<div class="right">
+  <ng-content></ng-content>
+</div>
