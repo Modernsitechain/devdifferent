@@ -1,0 +1,14 @@
+@use "includes" as i;
+.breadcrumb {
+  @include i.text-sm();
+  color: var(--color-primary-neutral-900);
+  text-transform: lowercase;
+  // word-spacing: 0.75rem;
+  padding: 0.5rem 2rem;
+
+  span {
+    @include i.text-sm();
+    color: var(--color-primary-green-300);
+    text-decoration: underline;
+  }
+}

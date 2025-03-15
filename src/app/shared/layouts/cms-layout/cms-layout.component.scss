@@ -1,0 +1,29 @@
+@use "includes" as i;
+@use "themes" as t;
+
+.layout{
+  &__main{
+    @include i.flex-row(stretch);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__sidebar{
+    background-color: #f2f6f8;
+    width: 20%;
+    min-width: 21.3rem;
+    height: 100%;
+    position: inital;
+    top: initial;
+    padding: 1rem 1.5rem;
+
+  }
+
+  &__content{
+    background-color: #f8f9fa;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+  }
+}

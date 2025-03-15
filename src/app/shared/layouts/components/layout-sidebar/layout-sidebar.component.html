@@ -1,0 +1,22 @@
+<aside class="sidebar">
+  <ul class="sidebar__menu">
+    @for (menu of menus; track $index) {
+    <li class="sidebar__item">
+      <button
+        class="sidebar__button"
+        appButton
+        [stretch]="true"
+        [class.active]="isActive(menu.url)"
+      >
+        <div class="sidebar__icon">
+          <app-icon [name]="menu.icon"></app-icon>
+        </div>
+
+        <div class="sidebar__label">
+          <p>{{ menu.label | translate }}</p>
+        </div>
+      </button>
+    </li>
+    }
+  </ul>
+</aside>

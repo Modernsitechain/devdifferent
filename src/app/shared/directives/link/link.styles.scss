@@ -1,0 +1,39 @@
+@use 'includes' as i;
+@use 'themes' as t;
+
+.link {
+  display: inline-block;
+  color: t.$primary;
+  cursor: pointer;
+  &.no-text-decoration {
+    text-decoration: none !important;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: #3e4e5f14;
+  }
+
+  &.stretch {
+    width: 100%;
+    flex: 1;
+  }
+
+  &.sm {
+    font-size: t.font-size('sm');
+  }
+
+  &.md {
+    font-size: t.font-size('md');
+  }
+
+  &:hover {
+    color: darken(t.$primary, 10%);
+  }
+
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
