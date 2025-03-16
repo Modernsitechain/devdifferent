@@ -1,0 +1,14 @@
+@switch (type()) { @case ('chip') {
+<app-chip
+  class="text-capitalize"
+  [color]="getChipColor(value())"
+  [removable]="false"
+  >{{ value() }}</app-chip
+>
+} @case ('image') {
+<div class="image-wrap">
+  <app-image [path]="value()" [title]="value()"></app-image>
+</div>
+} @default{
+<p>{{ value() }}</p>
+} }

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Content } from '@feature/cms/models';
-import { concatMap, Observable, of } from 'rxjs';
+import { concatMap, from, map, Observable, of } from 'rxjs';
 import { MediaInterface } from '@core/interfaces';
 import { BaseService } from '../base/base.service';
 import { ProgressService } from '../progress/progress.service';
@@ -14,6 +14,14 @@ export class ContentService extends BaseService{
   
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public getList(): Observable<Content.Base[]> {
+    return from(
+      this.getAPI(
+        '/contents'
+      ).pipe(map((res) => res))
+    );
   }
 
   public createContent(_payload: Content.FormContentCreate):Observable<any> {

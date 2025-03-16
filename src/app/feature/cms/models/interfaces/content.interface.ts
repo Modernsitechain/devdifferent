@@ -2,7 +2,15 @@ import { MediaInterface } from '@core/interfaces';
 
 export namespace Content {
   export interface Base {
-    id: string;
+    _id: string;
+    title: string;
+    image: MediaInterface;
+    createdAt?: string;
+    __v?: number;
+  }
+
+  export interface Table {
+    _id: string;
     title: string;
     image: MediaInterface;
   }
@@ -14,5 +22,4 @@ export namespace Content {
 
   export interface FormContentUpdate extends Base {}
   export interface FormContentDelete extends Base {}
-  export interface Table extends Base {}
 }

@@ -4,7 +4,7 @@ import { remove, RemoveWithPathInput, RemoveWithPathOutput, uploadData } from 'a
 import { from, Observable, of } from 'rxjs';
 import { Amplify } from 'aws-amplify';
 import outputs from 'amplify_outputs.json';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '@env/environment';
 
 @Injectable({
@@ -15,6 +15,31 @@ export class BaseService {
   private baseUrl = environment.baseUrl;
   constructor(protected http: HttpClient) { 
     Amplify.configure(outputs);
+  }
+
+  protected getAPI<T, R = T>(
+    endpoint: string,
+    params?: T
+  ): Observable<any> {
+    let httpParams = new HttpParams();
+
+    const url = this.baseUrl + endpoint;
+
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        const value = (params as any)[key];
+        if (value !== null && value !== undefined) {
+          httpParams = httpParams.set(key, value);
+        }
+      });
+    }
+
+    const headers = new HttpHeaders({});
+
+    return this.http.get(url, {
+      params: httpParams,
+      headers: headers
+    });
   }
 
   protected postAPI<T>(

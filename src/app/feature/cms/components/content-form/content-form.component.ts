@@ -86,7 +86,7 @@ export class ContentFormComponent extends FormBase<any, any> {
     this.openProgressDialog();
     if (this.currentContent) {
       const payload: Content.FormContentUpdate = {
-        id: '',
+        _id: '',
         title: this.form.controls.title.value!,
         image: this.form.controls.image.value!,
       };
