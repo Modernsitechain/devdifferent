@@ -11,13 +11,8 @@ import {
   viewChild
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InputBaseClass } from '@app/core/classes';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import {
-  saxGalleryOutline,
-  saxVideoCircleOutline
-} from '@ng-icons/iconsax/outline';
-// import { MediaService } from '@services';
+import { InputBaseClass, Perform } from '@app/core/classes';
+import { MediaService } from '@core/services';
 import { getDynamicSize, getFileName } from '@shared/functions';
 import { MediaInterface } from '@core/interfaces';
 import { TranslateModule } from '@ngx-translate/core';
@@ -61,7 +56,7 @@ export class FileInputComponent extends InputBaseClass {
   public accessableFileTypeText = input.required<string>();
   public fileType = input<'image' | 'video' | 'audio'>('image');
 
-  // public mediaPerform = new Perform<string>();
+  public mediaPerform = new Perform<string>();
   public dragging = signal<boolean>(false);
   public progress = signal<number>(20);
   public videoPreview = signal<any>(null);

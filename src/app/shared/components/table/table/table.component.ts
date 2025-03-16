@@ -6,12 +6,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { TableValueType } from '@app/core/types';
 
-import { TableActionDataValueComponent } from '@app/shared/components/table/updated/table-action-data-value/table-action-data-value.component';
-import { TableNoDataValueComponent } from '@app/shared/components/table/updated/table-no-data-value/table-no-data-value.component';
-import { TableDataValueComponent } from '@app/shared/components/table/updated/table-data-value/table-data-value.component';
+import { TableActionDataValueComponent } from '@shared/components/table/table-action-data-value/table-action-data-value.component';
+import { TableNoDataValueComponent } from '@shared/components/table/table-no-data-value/table-no-data-value.component';
+import { TableDataValueComponent } from '@shared/components/table/table-data-value/table-data-value.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
-import { OptionInterface } from '@interfaces';
+import { OptionInterface } from '@core/interfaces';
 import { MoovdLoading } from 'moovd-components';
 @Component({
   selector: 'app-table',
@@ -99,7 +99,7 @@ export class TableComponent {
   public getButtonUrl(modelType: string) {
     switch (modelType) {
       case 'positive message': {
-        return 'content-management/positive-messages/create';
+        return 'cms/content';
       }
       case 'hack': {
         return 'content-management/hacks/create';

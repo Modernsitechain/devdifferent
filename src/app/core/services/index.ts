@@ -5,3 +5,4 @@ export * from './dialog/dialog.service';
 export * from './content/content.service';
 export * from './progress/progress.service';
 export * from './content-update/content-update.service';
+export * from './media/media.service';

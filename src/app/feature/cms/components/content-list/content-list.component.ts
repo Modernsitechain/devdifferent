@@ -9,12 +9,15 @@ import { OptionInterface } from '@core/interfaces';
 import { ContentService, ContentUpdateService, DialogService, ProgressService } from '@core/services';
 import { TableValueType } from '@core/types';
 import { Content, ContentHeaders, ContentUniqueTableValue } from '@feature/cms/models';
-import { catchError, of } from 'rxjs';
+import { ProgressDialogComponent } from '@shared/components';
+import { PopupDialogComponent } from '@shared/components/dialog/popup-dialog/popup-dialog.component';
+import { TableComponent } from '@shared/components/table';
+import { catchError, concatMap, of, timer } from 'rxjs';
 
 @Component({
   selector: 'app-content-list',
   standalone: true,
-  imports: [MatPaginator],
+  imports: [MatPaginator, TableComponent],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -58,6 +61,83 @@ export class ContentListComponent {
 
   public ngOnInit(): void {
     this.loadList();
+  }
+
+  public addContent(): void {
+    this.router.navigate(['cms/content/create']);
+  }
+
+  protected search(value: string | undefined): void {
+    this.modelSearchKey.set(value ?? '');
+  }
+
+  protected openViewDetailDialog(data: Content.Base): void {
+    // this.dialogService.open(GrowthDetailDialogComponent, data, false, true);
+  }
+
+  protected deleteContent(data: Content.Base): void {
+    this.dialogService
+      .open(
+        PopupDialogComponent,
+        {
+          title: "Delete Content",
+          primaryLabel: "confirm",
+          secondaryLabel: "cancel"
+        },
+        false,
+        true
+      )
+      .pipe(
+        concatMap((res) => {
+          if (res) {
+            this.openProgressDialog();
+            const growth = this.rawData().find((_data) => _data._id === data._id);
+            if(growth){
+              return this.contentService.deleteContent(growth);
+            }
+          }
+          return of([]);
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe({
+        next: (res) => {
+          if (res.length !== 0) {
+            this.progressService.setProgress(100, 'data deleted!');
+            timer(1000).subscribe(() => {
+              this.dialogRef?.close();
+            });
+            this.loadList();
+          }
+        },
+        error: (error) => {
+          this.progressService.setProgress(-1, error.message);
+          return of(error);
+        }
+      });
+  }
+
+  protected updateContent(data: Content.Base): void {
+    const content = this.rawData().find((_data) => _data._id === data._id);
+
+    if (content) {
+      this.contentUpdateService.setCurrentContent(content);
+      this.router.navigate([
+        'cms/content/update',
+        content._id
+      ]);
+    }
+  }
+
+  private openProgressDialog() {
+    this.dialogRef = this.dialogService.openWithCompRef(
+      ProgressDialogComponent,
+      {
+        title: "Delete Content"
+      },
+      true,
+      true
+    );
   }
 
   private loadList(): void {

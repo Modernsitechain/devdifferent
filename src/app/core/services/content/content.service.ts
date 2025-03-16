@@ -42,7 +42,7 @@ export class ContentService extends BaseService{
           '/contents',
           {
             title: _payload.title,
-            image: _payload.image.title
+            image: _payload.image.url
           }
         );
       }),
@@ -62,7 +62,11 @@ export class ContentService extends BaseService{
   }
 
   public deleteContent(_payload: Content.FormContentDelete):Observable<any> {
-    return of();
+    return from(
+      this.deleteAPI<Record<string, unknown>>(
+        `/contents/${_payload._id}`
+      )
+    );
   }
 
   public uploadImage(_image: Partial<MediaInterface>) {
