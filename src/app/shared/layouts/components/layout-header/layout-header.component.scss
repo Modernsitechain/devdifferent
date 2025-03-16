@@ -1,0 +1,25 @@
+@use "includes" as i;
+@use "themes" as t;
+
+:host {
+  display: block;
+}
+
+.header {
+  &__container {
+    width: 100%;
+    height: fit-content;
+    background-color: t.$light;
+    padding: 1rem 2rem;
+  }
+
+  &__menu {
+    @include i.flex-row(flex-start, flex-start);
+  }
+
+  &__logo {
+    h1{
+      @include i.text-display-sm(bold);
+    }
+  }
+}

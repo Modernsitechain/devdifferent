@@ -1,0 +1,68 @@
+@forward "../../../node_modules/@angular/cdk/overlay-prebuilt.css";
+
+@use "../includes" as i;
+@use "../themes/" as t;
+.dialog-container,
+.dialog-container-center {
+  .cdk-dialog-container {
+    height: initial;
+    padding: 0;
+    overflow: hidden;
+    color: inherit;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    max-height: 100%;
+    outline: none;
+  }
+}
+
+.dialog-container-center {
+  padding: 0 1rem;
+}
+
+.dialog-container {
+  @include i.breakpoint-down("xs") {
+    align-self: flex-end;
+  }
+}
+
+.dialog-backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(#393939, 0.1);
+}
+
+.cdk-global-scrollblock {
+  overflow-y: initial !important;
+}
+
+.link-emdr {
+  color: t.$white;
+  @include t.font-bold();
+  text-decoration: underline;
+  margin: 0 0.2rem;
+}
+.orange {
+  color: t.get-color("orange");
+}
+
+// .mat-mdc-paginator-page-size-label,
+// .mat-mdc-paginator-range-actions {
+//   display: none !important;
+// }
+
+// .mat-mdc-form-field {
+//   background-color: pink;
+// }
+
+// .mat-mdc-paginator-touch-target{
+//   border: 1px solid brown;
+// }
+
+// .mat-mdc-select{
+//   border: 1px solid yellow;
+// }
+
+
+
