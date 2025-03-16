@@ -23,6 +23,7 @@
     "@angular/platform-server": "^18.0.0",
     "@angular/router": "^18.0.0",
     "@angular/ssr": "^18.0.6",
+    "@aws-sdk/client-s3": "^3.758.0",
     "@ng-icons/core": "^31.2.0",
     "@ng-icons/iconsax": "^31.2.0",
     "@ng-icons/material-icons": "^31.2.0",

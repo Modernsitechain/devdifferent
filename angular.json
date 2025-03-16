@@ -42,7 +42,17 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "amazon-chime-sdk-js",
+              "dayjs/plugin/timezone",
+              "sdp",
+              "fast-xml-parser",
+              "buffer",
+              "crc-32",
+              "bowser"
+            ]
           },
           "configurations": {
             "production": {

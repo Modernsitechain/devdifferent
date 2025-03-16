@@ -3,35 +3,37 @@
   [class.dragging]="dragging()"
   (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave()"
-  (drop)="onDrop($event)">
+  (drop)="onDrop($event)"
+>
   @if (!currentData()) { @if (!file() && !loading()) {
   <div class="upload-wrap">
     <div class="upload-icon">
-      <ng-icon name="saxDocumentUploadOutline" />
+      <app-icon name="saxDocumentUploadOutline"></app-icon>
     </div>
     <div class="upload-text">
       <p>
-        {{ 'text.drag-and-drop' | translate }}
+        {{ "text.drag-and-drop" | translate }}
         <span (click)="onFileSelect()">{{
-          'text.upload-file' | translate
+          "text.upload-file" | translate
         }}</span>
       </p>
       <span>{{ accessableFileTypeText() }}</span>
     </div>
   </div>
-  }@else if (file() && loading()) {
+  } @else if (file() && loading()) {
   <div class="uploaded-file-wrap">
     <div class="uploaded-file-info">
       <div class="info-image-wrap">
         @if( imageSrc() ){
         <img [src]="imageSrc()" alt="logo" />
         }
-        <ng-icon
+        <app-icon
           [name]="
             fileType() === 'image'
               ? 'saxGalleryOutline'
               : 'saxVideoCircleOutline'
-          "></ng-icon>
+          "
+        ></app-icon>
       </div>
       <p class="info-file-title">{{ file()?.name }}</p>
     </div>
@@ -40,7 +42,7 @@
         <div class="progress-bar" [style.width.%]="progress()"></div>
       </div>
       <div>
-        <ng-icon name="saxCloseCircleOutline" />
+        <app-icon name="saxCloseCircleOutline"></app-icon>
       </div>
     </div>
     <div class="file-info-wrap">
@@ -55,12 +57,13 @@
         @if( imageSrc() ){
         <img [src]="imageSrc()" alt="logo" />
         }
-        <ng-icon
+        <app-icon
           [name]="
             fileType() === 'image'
               ? 'saxGalleryOutline'
               : 'saxVideoCircleOutline'
-          "></ng-icon>
+          "
+        />
       </div>
       <p class="info-file-title">{{ file()?.name }}</p>
     </div>
@@ -72,11 +75,12 @@
             media: fileType() === 'image' ? imageSrc() : videoPreview(),
             mediaType: fileType()
           })
-        ">
-        <span>{{ 'text.view' | translate }}</span>
+        "
+      >
+        <span>{{ "text.view" | translate }}</span>
       </div>
       <div (click)="removeFile()" class="action-delete">
-        <ng-icon name="saxTrashOutline" />
+        <app-icon name="saxTrashOutline" />
       </div>
     </div>
   </div>
@@ -85,23 +89,22 @@
     <div class="uploaded-file-info">
       <div class="info-image-wrap">
         @if (fileType() === 'image') {
-        <app-image
-          [path]="this.currentData()?.url || ''"
-          [title]="this.currentData()?.title || ''" />
+        <app-image [path]="this.currentData()?.url || ''" />
         }@else {
         <img src="assets/images/logos/logo.png" alt="logo" />
         }
-        <ng-icon
+        <app-icon
           [name]="
             fileType() === 'image'
               ? 'saxGalleryOutline'
               : 'saxVideoCircleOutline'
-          "></ng-icon>
+          "
+        ></app-icon>
       </div>
       <p class="info-file-title">{{ currentData().title }}</p>
     </div>
-    <div class="preview-action-wrap">
-      <!-- @if(!mediaPerform.isLoading && mediaPerform.data){
+    <!-- <div class="preview-action-wrap">
+      @if(!mediaPerform.isLoading && mediaPerform.data){
       <div
         class="action-view"
         (click)="
@@ -112,11 +115,11 @@
         ">
         <span>{{ 'text.view' | translate }}</span>
       </div>
-      } -->
+      }
       <div (click)="removeFile()" class="action-delete">
-        <ng-icon name="saxTrashOutline" />
+        <app-icon name="saxTrashOutline" />
       </div>
-    </div>
+    </div> -->
   </div>
   }
 
@@ -125,9 +128,11 @@
     #fileInput
     [accept]="accessableFileType()"
     (change)="onFileChange($event)"
-    hidden />
+    hidden
+  />
 </div>
 
 <app-input-error-message
   [showMessage]="error()"
-  [message]="'error-message.file-not-supported' | translate" />
+  [message]="'error-message.file-not-supported' | translate"
+/>

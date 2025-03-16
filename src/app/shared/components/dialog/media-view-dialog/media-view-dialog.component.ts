@@ -1,43 +1,32 @@
-import { Dialog, DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { CommonModule } from '@angular/common';
-import { Component, Inject, Input } from '@angular/core';
-import { MediaInterface } from '@interfaces';
-import { MediaService } from '@services';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
-import { Perform } from '@classes';
-import { ButtonDirective } from '@directives';
 import { TranslateModule } from '@ngx-translate/core';
-import { LabelComponent } from '../../label';
+import { LabelComponent } from '@shared/components/label/label.component';
+import { ButtonDirective } from '@shared/directives';
 
 @Component({
   selector: 'app-media-view-dialog',
   standalone: true,
   imports: [
+    ButtonDirective,
     TranslateModule,
     DialogComponent,
     ButtonDirective,
     LabelComponent,
-    CommonModule
   ],
   templateUrl: './media-view-dialog.component.html',
   styleUrl: './media-view-dialog.component.scss'
 })
 export class MediaViewDialogComponent {
-  public mediaPerform = new Perform<string>();
-
   constructor(
     @Inject(DIALOG_DATA)
     public data: {
       media: string | ArrayBuffer | null;
-      mediaType: 'video' | 'image' | 'audio';
+      mediaType: 'image';
     },
     private dialogRef: DialogRef<boolean, MediaViewDialogComponent>,
-    private mediaService: MediaService
   ) {}
-
-  private loadMedia(path: string) {
-    this.mediaPerform.load(this.mediaService.getMediaUrl(path));
-  }
 
   public close() {
     this.dialogRef.close();

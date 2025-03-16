@@ -1,7 +1,7 @@
 <section class="form-wrap">
     <div class="form-content">
       <div class="form-navigation">
-        <a href="content-management/hacks">
+        <a href="cms/content">
           CONTENT FORM
         </a>
       </div>
@@ -26,22 +26,21 @@
               accessableFileTypeText="PNG, JPG, JPEG Max 100MB"
               accessableFileType=".png,.jpg,.jpeg"
               [control]="form.controls.image"
-              [currentData]="currentImage()"
               [validFileType]="['image/png', 'image/jpg', 'image/jpeg']"
               [maxSizeKb]="10240"
-              (onDropFile)="onDropFile($event)" />
+              (onDropFile)="droppedImage.set($event)" />
           </app-form-field>
         </div>
       </app-form>
   
       <div class="form__action">
         <app-form
-          [form]="form"
-          (formSubmit)="updateState() ? updateContent() : submit()"
+        [form]="form"
+        (formSubmit)="updateState() ? updateContent() : submit()"
           class="form__action-submit">
           <button appButton="primary">
             <app-label>
-              {{ 'form.action.submit' | translate }}
+              Submit
             </app-label>
           </button>
         </app-form>

@@ -21,17 +21,17 @@ import {
 import { getDynamicSize, getFileName } from '@shared/functions';
 import { MediaInterface } from '@core/interfaces';
 import { TranslateModule } from '@ngx-translate/core';
-import { IconComponent, ImageComponent } from '@shared/components';
+import { IconComponent } from '@shared/components';
 import { InputErrorMessageComponent } from '@shared/components/input-error-message/input-error-message.component';
 import { MediaViewDialogComponent } from '@shared/components/dialog';
 import { DialogService } from '@core/services';
+import { ImageComponent } from '@shared/components/media/image/image.component';
 
 @Component({
   selector: 'app-file-input',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIconComponent,
     TranslateModule,
     ImageComponent,
     InputErrorMessageComponent,
@@ -39,16 +39,9 @@ import { DialogService } from '@core/services';
   ],
   templateUrl: './file-input.component.html',
   styleUrl: './file-input.component.scss',
-  viewProviders: [
-    provideIcons({
-      saxGalleryOutline,
-      saxVideoCircleOutline
-    })
-  ]
 })
 export class FileInputComponent extends InputBaseClass {
   public dialogService = inject(DialogService);
-  // private mediaService = inject(MediaService);
 
   @Input()
   public maxDimension!: number;

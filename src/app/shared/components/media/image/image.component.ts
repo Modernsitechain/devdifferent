@@ -1,29 +1,22 @@
-import { Component, Input } from '@angular/core';
-// import { Perform } from '@classes';
+import { Component, inject, input, signal } from '@angular/core';
+import { AwsS3Service } from '@core/services/aws-s3/aws-s3.service';
 
 @Component({
   selector: 'app-image',
   standalone: true,
   imports: [],
   templateUrl: './image.component.html',
-  styleUrl: './image.component.scss'
+  styleUrl: './image.component.scss',
 })
 export class ImageComponent {
-  @Input({ required: true })
-  public path!: string;
+  public path = input.required<string>();
+  
+  private readonly awsS3Service = inject(AwsS3Service);
+  
+  public fileUrl = signal<string | undefined>(undefined);
 
-  @Input({ required: true })
-  public title!: string;
-
-  // public mediaPerform = new Perform<string>();
-
-  // constructor(private mediaService: MediaService) {}
-
-  ngOnInit() {
-    this.loadData();
-  }
-
-  private loadData() {
-    // this.mediaPerform.load(this.mediaService.getMediaUrl(this.path));
+  public async showFiles() {
+    const files = await this.awsS3Service.getFileUrl(this.path());
+    console.log('S3 Files:', files);
   }
 }

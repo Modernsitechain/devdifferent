@@ -5,7 +5,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, Observable, of, take, timer } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -51,7 +51,6 @@ export class ContentFormComponent extends FormBase<any, any> {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly dialogService = inject(DialogService);
-  private readonly translateService = inject(TranslateService);
   private readonly contentService = inject(ContentService);
   private readonly progressService = inject(ProgressService);
   private readonly contentUpdateService = inject(ContentUpdateService);
@@ -62,7 +61,7 @@ export class ContentFormComponent extends FormBase<any, any> {
 
   private dialogRef: DialogRef<unknown, unknown> | undefined;
 
-  public droppedThumbnail = signal<MediaInterface | null>(null);
+  public droppedImage = signal<MediaInterface | null>(null);
   public currentImage = signal<MediaInterface | undefined>(undefined);
 
   public updateState = computed(() =>
@@ -96,7 +95,7 @@ export class ContentFormComponent extends FormBase<any, any> {
           map(() => {
             this.progressService.setProgress(
               100,
-              this.translateService.instant('Success Update...')
+              'Success Update'
             );
             this.resetAndExit();
           }),
@@ -128,9 +127,6 @@ export class ContentFormComponent extends FormBase<any, any> {
   }
 
   // FORM
-  public onDropFile(file: MediaInterface) {
-    this.droppedThumbnail.set(file);
-  }
 
   private resetAndExit(): void {
     timer(2000)
@@ -143,17 +139,16 @@ export class ContentFormComponent extends FormBase<any, any> {
   }
 
   protected redirectTolist() {
-    this.router.navigate(['content-management/mosy/growths']);
+    this.router.navigate(['cms/content']);
   }
 
   private openProgressDialog() {
     this.dialogRef = this.dialogService.openWithCompRef(
       ProgressDialogComponent,
       {
-        title: this.translateService.instant('growth.create.uploading'),
-        desc: this.translateService.instant(
-          'growth.create.uploading.description'
-        ),
+        
+        title: "uploading content",
+        desc: "uploading content desc",
       },
       true,
       true
