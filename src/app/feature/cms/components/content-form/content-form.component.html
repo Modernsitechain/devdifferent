@@ -9,17 +9,17 @@
       <app-form [form]="form">
         <div class="form">
           <app-form-field
-            [label]="'growth-form.label.series' | translate"
+            [label]="'Title'"
             [required]="true">
             <app-input
               [control]="form.controls.title"
-              [placeholder]="'growth-form.placeholder.series' | translate" />
+              [placeholder]="'insert title'" />
           </app-form-field>
   
 
   
           <app-form-field
-            [label]="'growth-form.label.thumbnail' | translate"
+            [label]="'Image'"
             [required]="true">
             <app-file-input
               fileType="image"

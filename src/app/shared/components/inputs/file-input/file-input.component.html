@@ -12,10 +12,8 @@
     </div>
     <div class="upload-text">
       <p>
-        {{ "text.drag-and-drop" | translate }}
-        <span (click)="onFileSelect()">{{
-          "text.upload-file" | translate
-        }}</span>
+        Drag and drop or
+        <span (click)="onFileSelect()">Upload File</span>
       </p>
       <span>{{ accessableFileTypeText() }}</span>
     </div>
