@@ -1,0 +1,51 @@
+@use 'themes' as t;
+@use 'includes' as i;
+
+.content-card {
+  @include i.flex-column('', start);
+  gap: 0.875rem;
+  border: 1px t.get-color('moovd-sky-blue', 500) solid;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+
+  &__content {
+    @include i.flex-row(start);
+    gap: 0.875rem;
+  }
+
+  &__array {
+    @include i.flex-column('', start);
+    border: 1px t.get-color('moovd-light-blue', 100) solid;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    gap: 0.875rem;
+    flex-grow: 1;
+  }
+}
+
+.content-placeholder {
+  @include i.flex-column(center);
+  gap: 0.875rem;
+  border: 1px t.get-color('moovd-sky-blue', 500) solid;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+
+  &__icon {
+    @include i.flex-row(center, center);
+    background-color: t.get-color('moovd-sky-blue', 100);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 100%;
+  }
+}
+
+.exercise-media{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.min-margin{
+  margin-bottom: -1rem;
+}

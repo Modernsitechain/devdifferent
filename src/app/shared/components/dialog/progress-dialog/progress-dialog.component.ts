@@ -1,18 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   Inject,
-  Signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProgressBarComponent } from '../../progress-bar/progress-bar.component';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { ProgressService } from '@app/core/services/progress/progress.service';
+import { IconComponent } from '@shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-progress-dialog',
@@ -21,8 +19,8 @@ import { ProgressService } from '@app/core/services/progress/progress.service';
     CommonModule,
     DialogComponent,
     ProgressBarComponent,
-    FontAwesomeModule,
     TranslateModule,
+    IconComponent
   ],
   templateUrl: './progress-dialog.component.html',
   styleUrls: ['./progress-dialog.component.scss'],

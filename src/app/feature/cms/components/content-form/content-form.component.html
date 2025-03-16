@@ -1,1 +1,51 @@
-<p>content-form works!</p>
+<section class="form-wrap">
+    <div class="form-content">
+      <div class="form-navigation">
+        <a href="content-management/hacks">
+          CONTENT FORM
+        </a>
+      </div>
+  
+      <app-form [form]="form">
+        <div class="form">
+          <app-form-field
+            [label]="'growth-form.label.series' | translate"
+            [required]="true">
+            <app-input
+              [control]="form.controls.title"
+              [placeholder]="'growth-form.placeholder.series' | translate" />
+          </app-form-field>
+  
+
+  
+          <app-form-field
+            [label]="'growth-form.label.thumbnail' | translate"
+            [required]="true">
+            <app-file-input
+              fileType="image"
+              accessableFileTypeText="PNG, JPG, JPEG Max 100MB"
+              accessableFileType=".png,.jpg,.jpeg"
+              [control]="form.controls.image"
+              [currentData]="currentImage()"
+              [validFileType]="['image/png', 'image/jpg', 'image/jpeg']"
+              [maxSizeKb]="10240"
+              (onDropFile)="onDropFile($event)" />
+          </app-form-field>
+        </div>
+      </app-form>
+  
+      <div class="form__action">
+        <app-form
+          [form]="form"
+          (formSubmit)="updateState() ? updateContent() : submit()"
+          class="form__action-submit">
+          <button appButton="primary">
+            <app-label>
+              {{ 'form.action.submit' | translate }}
+            </app-label>
+          </button>
+        </app-form>
+    </div>
+    </div>
+  </section>
+  

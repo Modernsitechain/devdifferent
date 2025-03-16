@@ -1,16 +1,19 @@
-<app-dialog [disableClose]="getProgress() === -1?false:true" (closeClicked)="getProgress() === -1?cancel():null">
+<app-dialog
+  [disableClose]="getProgress() === -1 ? false : true"
+  (closeClicked)="getProgress() === -1 ? cancel() : null"
+>
   <div class="container">
     @if (getProgress() === 100) {
     <div class="icon-container">
-      <fa-icon icon="circle-check"></fa-icon>
+      <app-icon name="saxTickCircleOutline" />
     </div>
     }@else if (getProgress() === -1) {
     <div class="icon-container error">
-      <fa-icon icon="circle-xmark"></fa-icon>
+      <app-icon name="saxCloseCircleOutline" />
     </div>
     } @else {
     <div class="icon-container animate">
-      <fa-icon icon="hourglass-start"></fa-icon>
+      <app-icon name="sax3dRotateOutline" />
     </div>
 
     } @if (getProgress() === -1) {
@@ -23,11 +26,7 @@
     <p class="description">
       {{ data.desc }}
     </p>
-    } 
-    
-    
-    
-    @if (getProgress() !== -1) {
+    } @if (getProgress() !== -1) {
     <div class="progress-bar-container">
       <app-progress-bar [value]="getProgress()"></app-progress-bar>
       <p>
