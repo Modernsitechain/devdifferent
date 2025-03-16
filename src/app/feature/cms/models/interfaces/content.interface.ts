@@ -12,7 +12,7 @@ export namespace Content {
   export interface Table {
     _id: string;
     title: string;
-    image: MediaInterface;
+    image: string;
   }
 
   export interface FormContentCreate {

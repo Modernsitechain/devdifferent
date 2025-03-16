@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MediaInterface } from '@core/interfaces';
 import {
+  downloadData,
+  DownloadDataWithPathInput,
+  DownloadDataWithPathOutput,
   remove,
   RemoveWithPathInput,
   RemoveWithPathOutput,
@@ -92,5 +95,13 @@ export class BaseService {
     input: RemoveWithPathInput
   ): Observable<RemoveWithPathOutput> {
     return from(remove(input));
+  }
+
+  protected downloadFile(
+    _path: string
+  ): Observable<any> {
+    return from(downloadData({
+      path: _path
+    }).result);
   }
 }

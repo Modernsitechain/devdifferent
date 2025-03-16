@@ -74,6 +74,11 @@ export class ContentService extends BaseService{
     return this.uploadFile(basePath, _image);
   }
 
+  public downloadImage(_path: string) {
+    console.warn('_path', _path);
+    return this.downloadFile(_path);
+  }
+
   public deleteImage(_imageUrl: string) {
     return this.removeFile({ path: _imageUrl });
   }

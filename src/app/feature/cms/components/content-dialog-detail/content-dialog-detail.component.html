@@ -1,1 +1,29 @@
-<p>content-dialog-detail works!</p>
+<app-dialog [disableClose]="true">
+  <div class="detail-dialog-wrap">
+    <div class="detail-dialog-content-left">
+      @if (!mediaPerform.isLoading && mediaPerform.data) {
+        <p>{{mediaPerform.data}}</p>
+        <!-- <img [src]="mediaPerform.data"/> -->
+    }
+    </div>
+    <div class="detail-dialog-content-right">
+      <div class="info-wrap">
+        <div class="info-item">
+          <h6 class="info-subTitle">Title</h6>
+          <p class="info-value">{{ data.title }}</p>
+        </div>
+      </div>
+
+      <div class="detail-dialog-button">
+        <button
+          appButton="secondary"
+          class="outline"
+          [stretch]="true"
+          (click)="close()"
+        >
+          <app-label>Close</app-label>
+        </button>
+      </div>
+    </div>
+  </div>
+</app-dialog>

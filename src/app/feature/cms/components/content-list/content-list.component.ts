@@ -1,18 +1,38 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, input, output, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { OptionInterface } from '@core/interfaces';
-import { ContentService, ContentUpdateService, DialogService, ProgressService } from '@core/services';
+import {
+  ContentService,
+  ContentUpdateService,
+  DialogService,
+  ProgressService,
+} from '@core/services';
 import { TableValueType } from '@core/types';
-import { Content, ContentHeaders, ContentUniqueTableValue } from '@feature/cms/models';
+import {
+  Content,
+  ContentHeaders,
+  ContentUniqueTableValue,
+} from '@feature/cms/models';
 import { ProgressDialogComponent } from '@shared/components';
 import { PopupDialogComponent } from '@shared/components/dialog/popup-dialog/popup-dialog.component';
 import { TableComponent } from '@shared/components/table';
 import { catchError, concatMap, of, timer } from 'rxjs';
+import { ContentDialogDetailComponent } from '../content-dialog-detail/content-dialog-detail.component';
 
 @Component({
   selector: 'app-content-list',
@@ -20,10 +40,9 @@ import { catchError, concatMap, of, timer } from 'rxjs';
   imports: [MatPaginator, TableComponent],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentListComponent {
-
   private readonly router = inject(Router);
   private readonly contentService = inject(ContentService);
   private readonly destroyRef = inject(DestroyRef);
@@ -72,7 +91,7 @@ export class ContentListComponent {
   }
 
   protected openViewDetailDialog(data: Content.Base): void {
-    // this.dialogService.open(GrowthDetailDialogComponent, data, false, true);
+    // this.dialogService.open(ContentDialogDetailComponent, data, false, true);
   }
 
   protected deleteContent(data: Content.Base): void {
@@ -80,9 +99,9 @@ export class ContentListComponent {
       .open(
         PopupDialogComponent,
         {
-          title: "Delete Content",
-          primaryLabel: "confirm",
-          secondaryLabel: "cancel"
+          title: 'Delete Content',
+          primaryLabel: 'confirm',
+          secondaryLabel: 'cancel',
         },
         false,
         true
@@ -91,8 +110,10 @@ export class ContentListComponent {
         concatMap((res) => {
           if (res) {
             this.openProgressDialog();
-            const growth = this.rawData().find((_data) => _data._id === data._id);
-            if(growth){
+            const growth = this.rawData().find(
+              (_data) => _data._id === data._id
+            );
+            if (growth) {
               return this.contentService.deleteContent(growth);
             }
           }
@@ -113,27 +134,35 @@ export class ContentListComponent {
         error: (error) => {
           this.progressService.setProgress(-1, error.message);
           return of(error);
-        }
+        },
       });
   }
 
-  protected updateContent(data: Content.Base): void {
-    const content = this.rawData().find((_data) => _data._id === data._id);
+  protected downloadContent(data: Content.Base): void {
+    this.contentService.downloadImage(data.image as string).subscribe({
+      next: (res) => {
+        const blob = res.body as Blob;
+        const url = URL.createObjectURL(blob);
 
-    if (content) {
-      this.contentUpdateService.setCurrentContent(content);
-      this.router.navigate([
-        'cms/content/update',
-        content._id
-      ]);
-    }
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = res.path;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.warn('err', err);
+      },
+    });
   }
 
   private openProgressDialog() {
     this.dialogRef = this.dialogService.openWithCompRef(
       ProgressDialogComponent,
       {
-        title: "Delete Content"
+        title: 'Delete Content',
       },
       true,
       true
@@ -152,11 +181,7 @@ export class ContentListComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((res) => {
-        this.dataSource.set(
-          new MatTableDataSource(
-            res as Content.Base[]
-          )
-        );
+        this.dataSource.set(new MatTableDataSource(res as Content.Table[]));
         this.rawData.set(res);
         this.isLoading.set(false);
         this.dataSource().paginator = this.paginator() as MatPaginator;

@@ -40,6 +40,7 @@ export class TableComponent {
   public readonly viewDetail = output<any>();
   public readonly update = output<any>();
   public readonly delete = output<any>();
+  public readonly download = output<any>();
 
   //no data value requirement
   public noDataButtonAction = output<void>();
@@ -68,6 +69,10 @@ export class TableComponent {
 
   public deleteContent(data: any) {
     this.delete.emit(data);
+  }
+
+  public downloadContent(data: any) {
+    this.download.emit(data);
   }
 
   public getValueType(columnName: string): TableValueType {

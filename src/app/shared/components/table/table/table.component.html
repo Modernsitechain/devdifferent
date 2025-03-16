@@ -25,7 +25,9 @@
       <app-table-action-data-value
         (viewDetail)="viewContentDetail(row)"
         (update)="updateContent(row)"
-        (delete)="deleteContent(row)" />
+        (delete)="deleteContent(row)"
+        (download)="downloadContent(row)"
+        />
     </td>
     }@else {
     <td *matCellDef="let row" class="truncate">

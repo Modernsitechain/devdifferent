@@ -14,6 +14,7 @@ export class TableActionDataValueComponent {
   public readonly update = output<void>();
 
   public readonly delete = output<void>();
+  public readonly download = output<void>();
 
   public viewContentDetail () {
     this.viewDetail.emit();
@@ -21,6 +22,10 @@ export class TableActionDataValueComponent {
 
   public updateContent() {
     this.update.emit();
+  }
+
+  public downloadContent() {
+    this.download.emit();
   }
 
   public deleteContent() {
