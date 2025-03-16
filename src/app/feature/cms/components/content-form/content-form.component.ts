@@ -30,6 +30,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { MediaInterface } from '@core/interfaces';
 import { Validators } from '@shared/validators/validator.class';
 import { Content } from '@feature/cms/models';
+import { AwsS3Service } from '@core/services/aws-s3/aws-s3.service';
 
 @Component({
   selector: 'app-content-form',
@@ -54,6 +55,7 @@ export class ContentFormComponent extends FormBase<any, any> {
   private readonly contentService = inject(ContentService);
   private readonly progressService = inject(ProgressService);
   private readonly contentUpdateService = inject(ContentUpdateService);
+  private readonly awsS3Service = inject(AwsS3Service);
   public override form = new FormGroup({
     title: new FormControl<string>('', [Validators.required]),
     image: new FormControl<MediaInterface | null>(null),
@@ -93,10 +95,7 @@ export class ContentFormComponent extends FormBase<any, any> {
         .updateContent(payload)
         .pipe(
           map(() => {
-            this.progressService.setProgress(
-              100,
-              'Success Update'
-            );
+            this.progressService.setProgress(100, 'Success Update');
             this.resetAndExit();
           }),
           catchError((error) => {
@@ -146,9 +145,8 @@ export class ContentFormComponent extends FormBase<any, any> {
     this.dialogRef = this.dialogService.openWithCompRef(
       ProgressDialogComponent,
       {
-        
-        title: "uploading content",
-        desc: "uploading content desc",
+        title: 'uploading content',
+        desc: 'uploading content desc',
       },
       true,
       true
