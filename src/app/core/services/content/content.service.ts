@@ -1,17 +1,52 @@
 import { inject, Injectable } from '@angular/core';
 import { Content } from '@feature/cms/models';
-import { Observable, of } from 'rxjs';
-import { AwsS3Service } from '../aws-s3/aws-s3.service';
+import { concatMap, Observable, of } from 'rxjs';
+import { MediaInterface } from '@core/interfaces';
+import { BaseService } from '../base/base.service';
+import { ProgressService } from '../progress/progress.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ContentService {
-  private readonly awsS3Service = inject(AwsS3Service);
-  constructor() {}
+export class ContentService extends BaseService{
+  private readonly progressService = inject(ProgressService);
+  
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
   public createContent(_payload: Content.FormContentCreate):Observable<any> {
     return of();
+    this.progressService.setProgress(27, 'Uploading image...');
+    return this.uploadImage(_payload.image).pipe(
+      concatMap((res) => {
+        _payload.image.url = res.path;
+        delete _payload.image.value;
+
+        this.progressService.setProgress(
+          42,
+          'Uploading data'
+        );
+
+        return this.postAPI(
+          '',
+          {
+            title: _payload.title,
+            image: _payload.image
+          }
+        );
+    
+      }),
+  
+      concatMap((res) => {
+        this.progressService.setProgress(
+          100,
+          'upload succesd'
+        );
+        return of(res);
+      })
+    );
   }
 
   public updateContent(_payload: Content.FormContentUpdate):Observable<any> {
@@ -20,5 +55,14 @@ export class ContentService {
 
   public deleteContent(_payload: Content.FormContentDelete):Observable<any> {
     return of();
+  }
+
+  public uploadImage(_image: Partial<MediaInterface>) {
+    const basePath = 'dev-different';
+    return this.uploadFile(basePath, _image);
+  }
+
+  public deleteImage(_imageUrl: string) {
+    return this.removeFile({ path: _imageUrl });
   }
 }
