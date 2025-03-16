@@ -5,13 +5,12 @@ import {
   Input,
   Output
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconComponent } from '@shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [IconComponent],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })

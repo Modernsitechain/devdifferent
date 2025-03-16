@@ -1,5 +1,7 @@
 @if (!disableClose) {
-  <fa-icon (click)="close()" class="close-button" icon="xmark"></fa-icon>
+  <div (click)="close()" class="close-button">
+    <app-icon name="saxCloseCircleOutline"/>
+  </div>
 }
 
 <ng-content></ng-content>
