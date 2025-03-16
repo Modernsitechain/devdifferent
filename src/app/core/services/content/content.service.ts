@@ -17,10 +17,11 @@ export class ContentService extends BaseService{
   }
 
   public createContent(_payload: Content.FormContentCreate):Observable<any> {
-    return of();
+    // return of();
     this.progressService.setProgress(27, 'Uploading image...');
     return this.uploadImage(_payload.image).pipe(
       concatMap((res) => {
+        console.warn('upload imge', res);
         _payload.image.url = res.path;
         delete _payload.image.value;
 
@@ -30,13 +31,12 @@ export class ContentService extends BaseService{
         );
 
         return this.postAPI(
-          '',
+          '/contents',
           {
             title: _payload.title,
-            image: _payload.image
+            image: _payload.image.title
           }
         );
-    
       }),
   
       concatMap((res) => {
