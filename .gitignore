@@ -41,8 +41,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-amplify
-.amplify
-amplify_outputs*
-amplifyconfiguration*
-/amplify_outputs.json
+# amplify
+# .amplify
+# amplify_outputs*
+# amplifyconfiguration*
+# /amplify_outputs.json

@@ -1,0 +1,295 @@
+{
+  "auth": {
+    "user_pool_id": "ap-southeast-1_jMjmgtKK0",
+    "aws_region": "ap-southeast-1",
+    "user_pool_client_id": "19bu1q5biba8t8lu73inhlqprj",
+    "identity_pool_id": "ap-southeast-1:cb40ecf3-023d-4461-9e06-e536d704ce88",
+    "mfa_methods": [],
+    "standard_required_attributes": [
+      "email"
+    ],
+    "username_attributes": [
+      "email"
+    ],
+    "user_verification_types": [
+      "email"
+    ],
+    "mfa_configuration": "NONE",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_numbers": true,
+      "require_symbols": true,
+      "require_uppercase": true
+    },
+    "unauthenticated_identities_enabled": true
+  },
+  "data": {
+    "url": "https://sw23zykb75dendsom4bvqwo7oi.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+    "aws_region": "ap-southeast-1",
+    "api_key": "da2-dzy6lw4rafgphmm7vzkiztcgtq",
+    "default_authorization_type": "API_KEY",
+    "authorization_types": [
+      "AMAZON_COGNITO_USER_POOLS",
+      "AWS_IAM"
+    ],
+    "model_introspection": {
+      "version": 1,
+      "models": {
+        "AITool": {
+          "name": "AITool",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": {
+                "nonModel": "AIToolDescription"
+              },
+              "isRequired": true,
+              "attributes": []
+            },
+            "logo": {
+              "name": "logo",
+              "isArray": false,
+              "type": {
+                "nonModel": "Media"
+              },
+              "isRequired": true,
+              "attributes": []
+            },
+            "imagePreview": {
+              "name": "imagePreview",
+              "isArray": false,
+              "type": {
+                "nonModel": "Media"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "link": {
+              "name": "link",
+              "isArray": false,
+              "type": {
+                "nonModel": "AIToolLink"
+              },
+              "isRequired": true,
+              "attributes": []
+            },
+            "subscriptionType": {
+              "name": "subscriptionType",
+              "isArray": false,
+              "type": {
+                "enum": "AiSubscriptionType"
+              },
+              "isRequired": true,
+              "attributes": []
+            },
+            "categories": {
+              "name": "categories",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "Status"
+              },
+              "isRequired": true,
+              "attributes": []
+            },
+            "searchKey": {
+              "name": "searchKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "AITools",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "public",
+                    "provider": "apiKey",
+                    "operations": [
+                      "get",
+                      "list"
+                    ]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "delete",
+                      "get",
+                      "list",
+                      "update"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        }
+      },
+      "enums": {
+        "AiSubscriptionType": {
+          "name": "AiSubscriptionType",
+          "values": [
+            "free",
+            "freemium",
+            "free_trial",
+            "paid"
+          ]
+        },
+        "Status": {
+          "name": "Status",
+          "values": [
+            "publish",
+            "draft"
+          ]
+        }
+      },
+      "nonModels": {
+        "AIToolDescription": {
+          "name": "AIToolDescription",
+          "fields": {
+            "en": {
+              "name": "en",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            }
+          }
+        },
+        "AIToolLink": {
+          "name": "AIToolLink",
+          "fields": {
+            "website": {
+              "name": "website",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "youtube": {
+              "name": "youtube",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "tutorial": {
+              "name": "tutorial",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "Media": {
+          "name": "Media",
+          "fields": {
+            "title": {
+              "name": "title",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "url": {
+              "name": "url",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "size": {
+              "name": "size",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        }
+      }
+    }
+  },
+  "storage": {
+    "aws_region": "ap-southeast-1",
+    "bucket_name": "amplify-d2f3vb7uagtn49-pr-amplifybackendbucket3e71-x0fhpjzt7fvy",
+    "buckets": [
+      {
+        "name": "amplifyBackend",
+        "bucket_name": "amplify-d2f3vb7uagtn49-pr-amplifybackendbucket3e71-x0fhpjzt7fvy",
+        "aws_region": "ap-southeast-1"
+      }
+    ]
+  },
+  "version": "1.1"
+}
