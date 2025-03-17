@@ -4,5 +4,5 @@ import app from 'package.json';
 export const environment = {
   version: app.version.toString(),
   env: AppEnvironmentEnum.PRODUCTION,
-  baseUrl: ''
+  baseUrl: 'http://localhost:3000/api'
 };

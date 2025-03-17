@@ -1,1 +1,50 @@
-<p>content-form works!</p>
+<section class="form-wrap">
+    <div class="form-content">
+      <div class="form-navigation">
+        <a href="cms/content">
+          BACK
+        </a>
+      </div>
+  
+      <app-form [form]="form">
+        <div class="form">
+          <app-form-field
+            [label]="'Title'"
+            [required]="true">
+            <app-input
+              [control]="form.controls.title"
+              [placeholder]="'insert title'" />
+          </app-form-field>
+  
+
+  
+          <app-form-field
+            [label]="'Image'"
+            [required]="true">
+            <app-file-input
+              fileType="image"
+              accessableFileTypeText="PNG, JPG, JPEG Max 100MB"
+              accessableFileType=".png,.jpg,.jpeg"
+              [control]="form.controls.image"
+              [validFileType]="['image/png', 'image/jpg', 'image/jpeg']"
+              [maxSizeKb]="10240"
+              (onDropFile)="droppedImage.set($event)" />
+          </app-form-field>
+        </div>
+      </app-form>
+  
+      <div class="form__action">
+        <app-form
+        [form]="form"
+        (formSubmit)="updateState() ? updateContent() : submit()"
+          class="form__action-submit">
+          <button appButton="primary">
+            <app-label>
+              Submit
+            </app-label>
+          </button>
+        </app-form>
+    </div>
+    </div>
+  </section>
+  

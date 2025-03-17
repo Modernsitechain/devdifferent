@@ -1,0 +1,17 @@
+@use 'themes' as t;
+@use 'includes' as i;
+:host {
+  display: block;
+}
+
+label {
+  @include i.text-sm();
+  color: t.get-color('neutral', 900);
+  display: block;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+}
+
+span {
+  color: t.get-color('red', 800);
+}

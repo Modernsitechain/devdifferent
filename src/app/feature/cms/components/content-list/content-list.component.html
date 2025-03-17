@@ -1,1 +1,26 @@
-<p>content-list works!</p>
+<section class="content-wrap">
+    <div class="table">
+      <div class="table__content">
+        <app-table
+          [loading]="isLoading()"
+          [dataSource]="dataSource()"
+          [headers]="headers"
+          [uniqueValues]="uniqueTableValue"
+          [(selectedData)]="modelSelectedData"
+          contentName="Content"
+          [showAddButton]="true"
+          (viewDetail)="openViewDetailDialog($event)"
+          (noDataButtonAction)="addContent()"
+          (delete)="deleteContent($event)"
+          (download)="downloadContent($event)"
+          />
+      </div>
+  
+      <div class="table__paginator">
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          aria-label="Select page of content"></mat-paginator>
+      </div>
+    </div>
+  </section>
+  

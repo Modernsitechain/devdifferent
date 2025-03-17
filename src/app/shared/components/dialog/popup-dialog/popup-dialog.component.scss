@@ -1,0 +1,36 @@
+@use 'includes' as i;
+@use 'themes' as t;
+
+@include i.breakpoint-up('sm') {
+  :host {
+    display: block;
+    width: 100vw;
+    max-width: 25.625rem;
+  }
+}
+
+.title {
+  font-size: t.font-size('lg');
+  margin-bottom: 0.75rem;
+  @include t.font-bold();
+}
+
+app-dialog {
+  text-align: center;
+}
+
+.button-group {
+  @include i.flex-row(center, center);
+  margin-top: 1.5rem;
+  gap: 1rem;
+
+  button {
+    line-height: 1;
+    height: 3rem;
+
+    &.default {
+      color: t.get-color('moovd-light-blue', 700);
+      @include t.font-bold();
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@use 'themes' as t;
+@use 'includes' as i;
+
+$progress-bar-background: t.$white;
+$progress-bar-color: t.$primary;
+$progress-bar-height: 0.5rem;
+
+:host {
+  display: block;
+  width: 100%;
+  height: $progress-bar-height;
+  background-color: $progress-bar-background;
+}
+
+:host,
+.bar {
+  border-radius: i.border-radius('lg');
+}
+
+.bar {
+  background-color: $progress-bar-color;
+  height: 100%;
+  transition: width 200ms;
+}

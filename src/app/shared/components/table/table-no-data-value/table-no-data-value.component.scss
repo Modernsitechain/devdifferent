@@ -1,0 +1,40 @@
+@use "includes" as i;
+
+:host {
+  @include i.flex-column(center, center);
+  width: 100%;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.content-image {
+  width: 10rem;
+  height: 10rem;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content-text {
+  @include i.flex-column(center, center);
+  width: 50%;
+  text-align: center;
+  gap: 0.3rem;
+  h4 {
+    @include i.text-display-xs();
+    font-weight: bold;
+    color: var(--color-primary-neutral-700);
+  }
+
+  p {
+    width: 70%;
+    @include i.text-sm();
+    color: var(--color-neutral-gray-900);
+  }
+}
+
+img {
+  width: 400px;
+  height: 400px;
+}

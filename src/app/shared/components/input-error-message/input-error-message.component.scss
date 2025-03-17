@@ -1,0 +1,24 @@
+@use 'themes' as t;
+@use 'includes' as i;
+
+.error-message {
+  @include i.flex();
+  color: t.get-color('red', 800);
+  gap: .5rem;
+  font-size: t.font-size('sm');
+  
+  p{
+    width:95%;
+    color: t.get-color('red', 800);
+    @include i.text-macro();
+  }
+
+
+  & > * {
+    flex-shrink: 0;
+  }
+
+  .spinner-icon {
+    animation: rotate 1s linear infinite;
+  }
+}
