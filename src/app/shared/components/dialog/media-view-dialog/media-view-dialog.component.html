@@ -1,0 +1,18 @@
+<app-dialog [disableClose]="true">
+  <div class="media-view-dialog-wrap">
+    <div
+      class="media-view-dialog-content"
+      >
+      <img [src]="data.media" alt="image" />
+    </div>
+  </div>
+  <div class="button-wrap">
+    <button
+      appButton="secondary"
+      class="outline"
+      [stretch]="true"
+      (click)="close()">
+      <app-label>{{ 'button.close' | translate }}</app-label>
+    </button>
+  </div>
+</app-dialog>

@@ -1,0 +1,25 @@
+<app-dialog [disableClose]="data.disableClose" (closeClicked)="close()">
+  @if (countdown$) {
+    <h6 class="title">
+      {{ data.title }} <span>{{ countdown$ | async | date: 'm:ss' }} </span>
+    </h6>
+  } @else {
+    <h6 class="title">{{ data.title }}</h6>
+  }
+
+  @if (data.description) {
+    <p class="description" [innerHTML]="data.description | sanitize"></p>
+  }
+
+  <div class="button-group">
+    @if (data.secondaryLabel) {
+      <button appButton="secondary" [stretch]="true" (click)="close()" class="outline">
+        <app-label>{{ data.secondaryLabel }}</app-label>
+      </button>
+    }
+
+    <button appButton="primary" [stretch]="true" (click)="delete_data()">
+      <app-label>{{ data.primaryLabel }}</app-label>
+    </button>
+  </div>
+</app-dialog>

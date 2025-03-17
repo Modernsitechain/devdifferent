@@ -1,0 +1,9 @@
+@switch (type()) { @case ('chip') {
+
+} @case ('image') {
+<div class="image-wrap">
+  <app-image [path]="value()"></app-image>
+</div>
+} @default{
+<p>{{ value() }}</p>
+} }

@@ -1,0 +1,10 @@
+@if (label) {
+<label>
+  {{ label }}
+  @if (required) {
+  <span>*</span>
+  }
+</label>
+}
+
+<ng-content></ng-content>

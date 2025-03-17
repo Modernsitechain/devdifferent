@@ -1,0 +1,33 @@
+@use 'themes' as t;
+@use 'includes' as i;
+
+:host {
+  @include i.flex-column(stretch, center);
+  padding: 1.5rem;
+  background-color: t.$white;
+
+  @include i.border-radius-t(i.border-radius('lg'));
+
+  &.full-border-radius {
+    border-radius: i.border-radius('lg');
+  }
+}
+
+.close-button {
+  @include i.flex(center, center);
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: t.font-size('xl');
+  color: t.get-color('moovd-blue', 800);
+  align-self: flex-end;
+  cursor: pointer;
+  &:hover {
+    color: darken(t.get-color('moovd-blue', 800), 10%);
+  }
+}
+
+@include i.breakpoint-up('sm') {
+  :host {
+    border-radius: i.border-radius('lg');
+  }
+}

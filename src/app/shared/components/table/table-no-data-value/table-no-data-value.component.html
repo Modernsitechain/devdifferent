@@ -1,0 +1,28 @@
+@if (dataCount() === 0) {
+<div class="content-image">
+  <img [src]="noDataIllustration" [alt]="noDataAlt" />
+</div>
+<div class="content-text">
+  <h4>No {{ contentName() }} data available!</h4>
+  <p>
+    Click the add {{ contentName() }} button to create
+    {{ contentName() }} content or find another {{ contentName() }}.
+  </p>
+</div>
+@if (showAddButton()) {
+<div class="content-button">
+  <moovd-button (click)="buttonActionVoid()">
+    <moovd-label [icon]="'saxAddOutline'">
+      {{ contentName() }}
+    </moovd-label>
+  </moovd-button>
+</div>
+} }@else {
+<div class="content-image">
+  <img [src]="noDataIllustration" [alt]="noDataAlt" />
+</div>
+<div class="content-text">
+  <h4>{{ contentName() }} Data not found!</h4>
+  <p>Try to find another {{ contentName() }} data on search bar</p>
+</div>
+}
